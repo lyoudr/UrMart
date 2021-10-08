@@ -1,0 +1,13 @@
+- model: shop.shop
+  pk: 'ps'
+  fields:
+    shop_name: LG
+- model: shop.shop
+  pk: 'um'
+  fields:
+    shop_name: Star
+- model: shop.shop
+  pk: 'ms'
+  fields:
+    shop_name: Sky
+  

@@ -1,0 +1,10 @@
+- model: customer.customer
+  pk: 1
+  fields:
+    user_name: Ann
+    vip: True
+- model: customer.customer
+  pk: 2
+  fields:
+    user_name: Bob
+    vip: False

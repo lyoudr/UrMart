@@ -1,0 +1,21 @@
+- model: merchandise.product
+  pk: 1
+  fields:
+    stock_pcs: 7
+    price: 200
+    vip: True
+    shop_id: ps
+- model: merchandise.product
+  pk: 2
+  fields:
+    stock_pcs: 3
+    price: 160
+    vip: False
+    shop_id: um
+- model: merchandise.product
+  pk: 3
+  fields:
+    stock_pcs: 2
+    price: 100
+    vip: False
+    shop_id: ms

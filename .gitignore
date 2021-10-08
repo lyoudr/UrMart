@@ -1,0 +1,6 @@
+# Django
+__pycache__/
+# static
+static-root/
+# Environment
+.env
