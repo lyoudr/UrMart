@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import environ
 from pathlib import Path
+from celery.schedules import crontab
 
 environ.Env.read_env()
 
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
     'shop',
     'order',
     'customer',
+    # celery result backend
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +140,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = './static-root/'
+STATIC_ROOT = './static-root'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = './media-root'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -145,4 +150,39 @@ STATIC_ROOT = './static-root/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Celery
+'''    
+    1. Concept      
+        publisher => messages to queue (use broker as message server) => consumer
+        (1) publisher sent messages to exchanges
+        (2) An exchange routes messages to one or more queues. Several exhange types exists, providing different ways to do routing, or implementing different messaging scenarios.
+        (3) The message waits in the queue until someone consumes it
+    2. Exchange types
+        (1) Direct exchanges
+            Direct exchanges match by exact routing keys, so a queue bound by the routing key video only receives messages with that routing key.
+        (2) Topic exchanges
+            Topic exchanges matches routing keys using dot-separated words, and the wild-card characters: * (matches a single word), and # (matches zero or more words).
+'''
+# Broker - Redis
+CELERY_BROKER_URL = 'amqp://ann:annpasswd@localhost:5672/annvhost'
+# Result backend
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Taipei'
+# Queue setup
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_EXCHANGE = 'default'
+CELERY_DEFAULT_EXCHANGE_TYPE = 'topic'
+# Routing 
+CELERY_DEFAULT_ROUTING_KEY = 'default'
+# Periodic Task
+CELERY_BEAT_SCHEDULE = {
+    'sync_shop_info': {
+        'task': 'sync_shop_info',
+        'schedule': crontab(minute = '*/2'),
+        'options': {'queue': 'default'}
+    }
+}
 

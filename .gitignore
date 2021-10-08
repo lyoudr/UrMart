@@ -2,5 +2,8 @@
 __pycache__/
 # static
 static-root/
+media-root/
 # Environment
 .env
+*.log
+*.db
