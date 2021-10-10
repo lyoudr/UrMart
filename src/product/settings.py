@@ -94,16 +94,16 @@ WSGI_APPLICATION = 'product.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USER'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'HOST': os.getenv('DB_HOST'),
+#         'PORT': os.getenv('DB_PORT'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -167,24 +167,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
             Topic exchanges matches routing keys using dot-separated words, and the wild-card characters: * (matches a single word), and # (matches zero or more words).
 '''
 # Broker - Redis
-CELERY_BROKER_URL = os.environ.get('REDIS_URL') #f'amqp://ann:annpasswd@{os.getenv("RABBITMQ_HOST")}:5672/annvhost'
-# Result backend
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Taipei'
-# Queue setup
-CELERY_DEFAULT_QUEUE = 'default'
-CELERY_DEFAULT_EXCHANGE = 'default'
-CELERY_DEFAULT_EXCHANGE_TYPE = 'topic'
-# Routing 
-CELERY_DEFAULT_ROUTING_KEY = 'default'
-# Periodic Task
-CELERY_BEAT_SCHEDULE = {
-    'sync_shop_info': {
-        'task': 'sync_shop_info',
-        'schedule': crontab(minute = '*/1'), #crontab(minute = 0, hour = 0),
-        'options': {'queue': 'default'}
-    }
-}
+# CELERY_BROKER_URL = os.environ.get('REDIS_URL') #f'amqp://ann:annpasswd@{os.getenv("RABBITMQ_HOST")}:5672/annvhost'
+# # Result backend
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Taipei'
+# # Queue setup
+# CELERY_DEFAULT_QUEUE = 'default'
+# CELERY_DEFAULT_EXCHANGE = 'default'
+# CELERY_DEFAULT_EXCHANGE_TYPE = 'topic'
+# # Routing 
+# CELERY_DEFAULT_ROUTING_KEY = 'default'
+# # Periodic Task
+# CELERY_BEAT_SCHEDULE = {
+#     'sync_shop_info': {
+#         'task': 'sync_shop_info',
+#         'schedule': crontab(minute = '*/1'), #crontab(minute = 0, hour = 0),
+#         'options': {'queue': 'default'}
+#     }
+# }
