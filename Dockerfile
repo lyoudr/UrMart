@@ -13,4 +13,6 @@ RUN ls /product
 # install dependencies
 RUN pip install -r requirements.txt
 
+EXPOSE 5000
+
 ENTRYPOINT [ "bash", "entrypoint.bash"]
