@@ -15,4 +15,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 80
 
-ENTRYPOINT [ "bash", "entrypoint.bash"]
+# ENTRYPOINT [ "bash", "entrypoint.bash"]
