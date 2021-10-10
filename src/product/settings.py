@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import environ
 from pathlib import Path
-from celery.schedules import crontab
+from celery.schedules import BaseSchedule, crontab
 
 environ.Env.read_env()
 
@@ -102,7 +102,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -139,10 +138,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
-STATIC_ROOT = './static-root'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = './media-root'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media-root')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -164,7 +164,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
             Topic exchanges matches routing keys using dot-separated words, and the wild-card characters: * (matches a single word), and # (matches zero or more words).
 '''
 # Broker - Redis
-CELERY_BROKER_URL = 'amqp://ann:annpasswd@localhost:5672/annvhost'
+CELERY_BROKER_URL =  f'amqp://ann:annpasswd@{os.getenv("RABBITMQ_HOST")}:5672/annvhost'
 # Result backend
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -181,8 +181,7 @@ CELERY_DEFAULT_ROUTING_KEY = 'default'
 CELERY_BEAT_SCHEDULE = {
     'sync_shop_info': {
         'task': 'sync_shop_info',
-        'schedule': crontab(minute = '*/2'),
+        'schedule': crontab(minute = '*/1'), #crontab(minute = 0, hour = 0),
         'options': {'queue': 'default'}
     }
 }
-

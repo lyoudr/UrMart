@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment: 
+      - DB_NAME=product
+      - DB_USER=ann
+      - DB_PASSWORD=GxXynskDj134yi7P
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - RABBITMQ_HOST=rabbitmq
+    ports:
+      - "8088:5000"
+    depends_on: 
+      - rabbitmq
+  
+  postgres:
+    image: postgres
+    environment: 
+      - POSTGRES_DB=product
+      - POSTGRES_USER=ann
+      - POSTGRES_PASSWORD=GxXynskDj134yi7P
+    ports:
+      - 5439:5432
+
+  rabbitmq:
+    image: rabbitmq:3.9.7
+    environment: 
+      - RABBITMQ_DEFAULT_USER=ann
+      - RABBITMQ_DEFAULT_PASS=annpasswd
+      - RABBITMQ_DEFAULT_VHOST=annvhost
+    ports:
+      - 5679:5672
+    
