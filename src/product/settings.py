@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import django_heroku
 import os
 import environ
 from pathlib import Path
@@ -20,6 +20,9 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Heroku setting
+django_heroku.settings(locals())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -164,7 +167,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
             Topic exchanges matches routing keys using dot-separated words, and the wild-card characters: * (matches a single word), and # (matches zero or more words).
 '''
 # Broker - Redis
-CELERY_BROKER_URL =  f'amqp://ann:annpasswd@{os.getenv("RABBITMQ_HOST")}:5672/annvhost'
+CELERY_BROKER_URL = os.environ.get('REDIS_URL') #f'amqp://ann:annpasswd@{os.getenv("RABBITMQ_HOST")}:5672/annvhost'
 # Result backend
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']

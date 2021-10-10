@@ -1,0 +1,11 @@
+
+addons:
+  - plan: heroku-postgresql:hobby-dev
+    as: DATABASE
+  - plan: heroku-redis:hobby-dev
+    as: redis
+build:
+  docker:
+    server: Dockerfile
+run:
+  server: bundle exec puma -C config/puma.rb

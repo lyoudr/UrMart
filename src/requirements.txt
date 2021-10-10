@@ -21,3 +21,6 @@ typing-extensions==3.10.0.2
 # celery
 celery==5.1.2
 django-celery-results==2.2.0
+
+# heroku
+django-heroku==0.3.1
