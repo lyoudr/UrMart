@@ -7,10 +7,9 @@ setup:
       as: redis
 build:
   docker:
-    server: Dockerfile
+    web: Dockerfile
 run:
-  web: bundle exec puma -C config/puma.rb
-  worker:
+  web: 
     command: 
       - bash /product/entrypoint.bash
     image: web
