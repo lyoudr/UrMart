@@ -19,4 +19,4 @@ python3 manage.py loaddata_cus ./*/fixtures/*.yaml
 # python3 manage.py runserver 0.0.0.0:8000
 
 echo "Start Server"
-uwsgi --ini uwsgi.ini
+uwsgi --ini uwsgi.ini --thunder-lock
