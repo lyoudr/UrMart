@@ -6,7 +6,7 @@ static-root/
 media-root/
 
 # Environment
-.env
+# .env
 
 # log
 log/
