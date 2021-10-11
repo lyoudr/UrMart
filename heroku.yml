@@ -9,7 +9,8 @@ build:
   docker:
     server: Dockerfile
 run:
-  web: 
+  web: bundle exec puma -C config/puma.rb
+  worker:
     command: 
       - bash /product/entrypoint.bash
     image: web
