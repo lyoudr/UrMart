@@ -9,4 +9,8 @@ build:
   docker:
     server: Dockerfile
 run:
-  web: bash /product/entrypoint.bash
+  web: 
+    command: 
+      - bash /product/entrypoint.bash
+    image: web
+
