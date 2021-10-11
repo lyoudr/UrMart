@@ -24,3 +24,6 @@ django-celery-results==2.2.0
 
 # heroku
 django-heroku==0.3.1
+
+# uWSGI
+uWSGI==2.0.20

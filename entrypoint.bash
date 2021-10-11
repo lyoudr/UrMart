@@ -15,5 +15,8 @@ python3 manage.py loaddata_cus ./*/fixtures/*.yaml
 # echo "start worker for consuming tasks stored in Queue Queue default"
 # celery -A product worker --concurrency=1 -l INFO -Q default --logfile=log/celery.log --detach
 
-echo "Start the Django server"
-python3 manage.py runserver 0.0.0.0:8000
+# echo "Start the Django server"
+# python3 manage.py runserver 0.0.0.0:8000
+
+echo "Start Server"
+uwsgi --ini uwsgi.ini
