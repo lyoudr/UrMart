@@ -16,7 +16,8 @@ RUN pip install -r requirements.txt \
 
 # install redis
 RUN apt-get update \
-    && apt-get install -y redis-server
+    && apt-get install -y redis-server \
+    && apt-get install -y sudo
 
 EXPOSE 6379
 
