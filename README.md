@@ -1,8 +1,6 @@
 ### Website
    - 請點選以下網址查看 API 內容 (https://annproduct.herokuapp.com/swagger/)
 
-### GitHub Link
-   - 請點選以下網址查看 Code ()
 ### Model
 1. **Product** 商品資料
 2. **Order** 訂單資料
