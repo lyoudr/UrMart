@@ -9,6 +9,4 @@ media-root/
 # .env
 
 # log
-log/
-*.log
 *.db
