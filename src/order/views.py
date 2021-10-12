@@ -123,7 +123,7 @@ class OrderDeleteView(GenericAPIView):
     serializer_class = OrderSerializer
 
     @swagger_auto_schema(
-        operation_summary = 'order-02-delete 刪除訂單',
+        operation_summary = 'order-03-delete 刪除訂單',
     )
     def delete(self, request, pk):
         with transaction.atomic():

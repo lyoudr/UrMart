@@ -10,7 +10,7 @@ echo "Load default data"
 python3 manage.py loaddata_cus ./*/fixtures/*.yaml
 
 echo "Start Redis server"
-sudo service redis-server start
+redis-server &
 
 echo "Test Redis server status"
 redis-cli ping

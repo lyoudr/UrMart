@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import environ
 from pathlib import Path
-from celery.schedules import BaseSchedule, crontab
+from celery.schedules import crontab
 
 import dj_database_url
 environ.Env.read_env()
