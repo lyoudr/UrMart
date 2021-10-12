@@ -19,3 +19,10 @@
     price: 100
     vip: False
     shop_id: ms
+- model: merchandise.product
+  pk: 4
+  fields:
+    stock_pcs: 10
+    price: 290
+    vip: True
+    shop_id: um

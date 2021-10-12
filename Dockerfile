@@ -11,8 +11,14 @@ COPY ./entrypoint.bash /product/entrypoint.bash
 RUN ls /product
 
 # install dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt \
+    && pip install redis
 
-# EXPOSE 8000
+# install redis
+RUN apt-get update \
+    && apt-get install -y redis-server
 
-# ENTRYPOINT [ "bash", "entrypoint.bash"]
+EXPOSE 5000 6379
+
+# For local use
+ENTRYPOINT [ "bash", "/product/entrypoint.bash" ]

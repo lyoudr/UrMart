@@ -1,0 +1,36 @@
+- model: order.order
+  pk: 1
+  fields:
+    product: 1
+    qty: 5
+    price: 1000
+    shop: ps
+    customer: 1
+    establish: '1'
+- model: order.order
+  pk: 2
+  fields:
+    product: 2
+    qty: 4
+    price: 640
+    shop: um
+    customer: 2
+    establish: '1'
+- model: order.order
+  pk: 3
+  fields:
+    product: 3
+    qty: 7
+    price: 700
+    shop: ms
+    customer: 1
+    establish: '1'
+- model: order.order
+  pk: 4
+  fields:
+    product: 4
+    qty: 8
+    price: 3200
+    shop: um
+    customer: 1
+    establish: '1'

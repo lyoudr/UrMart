@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment: 
+      - ENV=local
       - DB_NAME=product
       - DB_USER=ann
       - DB_PASSWORD=GxXynskDj134yi7P
@@ -14,8 +15,9 @@ services:
       - RABBITMQ_HOST=rabbitmq
     ports:
       - "8088:5000"
-    depends_on: 
-      - rabbitmq
+      - "6380:6379"
+    # depends_on: 
+    #   - rabbitmq
   
   postgres:
     image: postgres
@@ -26,12 +28,12 @@ services:
     ports:
       - 5439:5432
 
-  rabbitmq:
-    image: rabbitmq:3.9.7
-    environment: 
-      - RABBITMQ_DEFAULT_USER=ann
-      - RABBITMQ_DEFAULT_PASS=annpasswd
-      - RABBITMQ_DEFAULT_VHOST=annvhost
-    ports:
-      - 5679:5672
+  # rabbitmq:
+  #   image: rabbitmq:3.9.7
+  #   environment: 
+  #     - RABBITMQ_DEFAULT_USER=ann
+  #     - RABBITMQ_DEFAULT_PASS=annpasswd
+  #     - RABBITMQ_DEFAULT_VHOST=annvhost
+  #   ports:
+  #     - 5679:5672
     
