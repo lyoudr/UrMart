@@ -18,7 +18,7 @@ RUN pip install -r requirements.txt \
 RUN apt-get update \
     && apt-get install -y redis-server
 
-EXPOSE 5000 6379
+EXPOSE 6379
 
 # For local use
-ENTRYPOINT [ "bash", "/product/entrypoint.bash" ]
+# ENTRYPOINT [ "bash", "/product/entrypoint.bash" ]

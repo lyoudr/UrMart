@@ -22,6 +22,8 @@ echo "Start worker for consuming tasks stored in Queue Queue default"
 celery -A product worker --concurrency=1 -l INFO -Q default --logfile=log/celery.log --detach
 
 echo "Start the Django server"
-# heroku => 0.0.0.0:$PORT
 # localhost => 0.0.0.0:5000
-python3 manage.py runserver 0.0.0.0:$PORT
+# python3 manage.py runserver 0.0.0.0:$PORT
+
+# heroku => 0.0.0.0:$PORT
+uwsgi --ini uwsgi.ini
