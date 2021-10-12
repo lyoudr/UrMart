@@ -26,4 +26,4 @@ echo "Start the Django server"
 # python3 manage.py runserver 0.0.0.0:$PORT
 
 # heroku => 0.0.0.0:$PORT
-uwsgi --ini uwsgi.ini
+uwsgi --socket=:$PORT --module=product.wsgi:application --master
