@@ -194,7 +194,7 @@ CELERY_DEFAULT_ROUTING_KEY = 'default'
 CELERY_BEAT_SCHEDULE = {
     'sync_shop_info': {
         'task': 'sync_shop_info',
-        'schedule': crontab(minute = '*/1'), #crontab(minute = 0, hour = 0),
+        'schedule': crontab(minute = 0, hour = 0), #crontab(minute = '*/1'), 
         'options': {'queue': 'default'}
     }
 }
