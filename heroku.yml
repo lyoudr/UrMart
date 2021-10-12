@@ -13,9 +13,6 @@ run:
     command: 
       - bash /product/entrypoint.bash
     image: web
-release:
-  command:
-    - bash /product/release.bash
-  image: web
+
   
 

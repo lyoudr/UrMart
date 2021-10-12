@@ -6,7 +6,6 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /product
 COPY src /product
 COPY ./entrypoint.bash /product/entrypoint.bash
-COPY ./release.bash /product/release.bash
 
 # See File in /product
 RUN ls /product
