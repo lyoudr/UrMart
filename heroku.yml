@@ -16,6 +16,6 @@ run:
 release:
   command:
     - bash /product/release.bash
-  image: worker
+  image: web
   
 
