@@ -10,7 +10,7 @@ echo "Load default data"
 python3 manage.py loaddata_cus ./*/fixtures/*.yaml
 
 echo "Start Redis server"
-service redis-server start
+sudo service redis-server start
 
 echo "Test Redis server status"
 redis-cli ping
@@ -26,4 +26,4 @@ echo "Start the Django server"
 # python3 manage.py runserver 0.0.0.0:$PORT
 
 # heroku => 0.0.0.0:$PORT
-uwsgi --socket=:$PORT --module=product.wsgi:application --master
+uwsgi --ini uwsgi.ini
