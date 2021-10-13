@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 
 from merchandise.models import Product
 from shop.models import Shop
@@ -21,3 +22,7 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.id}-{self.product.product_id}'
+    
+    @classmethod
+    def top_thr(self):
+        return list(self.objects.values_list('product_id', flat = True).annotate(total = Sum('qty'))[:3])

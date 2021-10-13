@@ -97,9 +97,16 @@ class OrderView(GenericAPIView):
     @check_vip_stock()
     def post(self, request):
         data = request.data
-        with transaction.atomic():
-            data['establish'] = '0' 
+        
+        if not data.get('shop_id') or not data.get('price'):
+            raise CustomError(
+                return_code = 'order-02-post_not-fill-required-field',
+                return_message = 'not fill required field qty, shop_id, price',
+                status_code = status.HTTP_400_BAD_REQUEST,
+            )
 
+        with transaction.atomic(): 
+            data['establish'] = '0' 
             # update product stock if stock is available
             if self.stock_avl:
                 product = Product.objects.get(pk = data.get('product_id'))

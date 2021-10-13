@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 
 from shop.models import Shop
 
@@ -14,3 +15,8 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.product_id}'
+    
+    @property
+    def sell_qty(self):
+        qty = self.order_a.aggregate(Sum('qty')).get('qty__sum')
+        return qty if qty else 0

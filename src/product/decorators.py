@@ -9,6 +9,12 @@ def check_vip_stock():
     def decorator(func):
         def decorated_func(self, *args, **kwargs):
             data = self.request.data
+            if not data.get('qty') or not data.get('customer_id') or not data.get('product_id'):
+                raise CustomError(
+                    return_code = 'not fill qty or customer_id or product_id',
+                    return_message = 'not fill qty or customer_id or product_id',
+                    status_code = status.HTTP_404_NOT_FOUND,
+                )
             try :
                 user = Customer.objects.get(pk = data.get('customer_id'))
                 product = Product.objects.get(pk = data.get('product_id'))

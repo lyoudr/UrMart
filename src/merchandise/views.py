@@ -1,4 +1,4 @@
-from django.db.models import Sum
+
 
 from order.models import Order
 from merchandise.models import Product
@@ -33,8 +33,8 @@ class ProductView(GenericAPIView):
         products = self.get_queryset().order_by('product_id')
         
         if request.GET.get('top') == 'true':
-            top_product_ids = list(Order.objects.values_list('product_id', flat = True).annotate(total = Sum('qty'))[:3])
-            products = products.filter(product_id__in = top_product_ids)
+            products = products.filter(product_id__in = Order.top_thr())
+            products = sorted(products, key = lambda prod: prod.sell_qty , reverse = True) # sorted from big to small sell_qtys
             
         if products:
             serializer = self.serializer_class(products, many = True)
